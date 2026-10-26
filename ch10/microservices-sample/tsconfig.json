@@ -1,0 +1,55 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "types": [
+      "vitest/globals",
+      "node"
+    ],
+    "paths": {
+      "@app/constants": [
+        "./libs/constants/src/index.ts"
+      ],
+      "@app/constants/*": [
+        "./libs/constants/src/*"
+      ],
+      "@app/shared": [
+        "./libs/shared/src/index.ts"
+      ],
+      "@app/shared/*": [
+        "./libs/shared/src/*"
+      ]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/microservices-sample/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/order/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/inventory/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/api-gateway/tsconfig.app.json"
+    }
+  ]
+}
