@@ -13,6 +13,10 @@ export class OrderService {
 
     private orders: Order[] = [];
 
+    findOneOrder(id: string) {
+        return this.orders.find(o => o.id === id);
+    }
+
     createOrder(createOrderDto: CreateOrderDto) {
         const order = {
             ...createOrderDto,

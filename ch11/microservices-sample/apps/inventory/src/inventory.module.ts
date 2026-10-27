@@ -11,6 +11,8 @@ import {ClientsModule, Transport} from '@nestjs/microservices';
                 transport: Transport.TCP,
                 options: {
                     port: 8001,
+                    retryAttempts: 5,
+                    retryDelay: 3000,
                 }
             }
         ])

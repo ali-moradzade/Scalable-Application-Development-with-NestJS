@@ -40,9 +40,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/microservices-sample/tsconfig.app.json"
-    },
-    {
       "path": "./apps/order/tsconfig.app.json"
     },
     {

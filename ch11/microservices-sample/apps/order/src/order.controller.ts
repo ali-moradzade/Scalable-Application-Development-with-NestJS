@@ -1,16 +1,23 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {OrderService} from './order.service.js';
 import {CreateOrderDto} from './dtos/create-order.dto.js';
 import {EventPattern} from '@nestjs/microservices';
 import {EVENTS} from '@app/constants';
 import {OrderProcessPayload} from '@app/shared';
 
-@Controller()
+@Controller('orders')
 export class OrderController {
     constructor(private readonly orderService: OrderService) {
     }
 
-    @Post('create-order')
+    @Get(':id')
+    findOneOrder(
+        @Param('id') id: string
+    ) {
+        return this.orderService.findOneOrder(id);
+    }
+
+    @Post()
     createOrder(
         @Body() createOrderDto: CreateOrderDto,
     ) {
