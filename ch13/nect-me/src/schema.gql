@@ -1,0 +1,151 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserPreferences {
+  darkMode: Boolean!
+  notifications: Boolean!
+}
+
+type User {
+  username: String!
+  email: String!
+  bio: String
+  preferences: UserPreferences!
+}
+
+type Post {
+  id: ID!
+  content: String!
+  isDeleted: Boolean!
+  author: User!
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  isDeleted: Boolean!
+  author: User!
+  post: Post!
+}
+
+type Reaction {
+  id: ID!
+  type: String!
+  user: User!
+  post: Post!
+}
+
+type Notification {
+  id: ID!
+  message: String!
+  recipient: User!
+  read: Boolean!
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User!
+  posts: [Post!]!
+  post(id: Int!): Post!
+  comments: [Comment!]!
+  comment(id: Int!): Comment!
+  reactions: [Reaction!]!
+  reaction(id: Int!): Reaction!
+  notifications: [Notification!]!
+  notification(id: Int!): Notification!
+}
+
+type Mutation {
+  createUser(createUserDto: CreateUserDto!): User!
+  updatePreferences(userId: String!, preferences: UpdatePreferencesInput!): User!
+  updateUser(updateUserDto: UpdateUserInput!): User!
+  removeUser(id: ID!): User!
+  createPost(createPostDto: CreatePostDto!): Post!
+  updatePost(updatePostDto: UpdatePostDto!): Post!
+  removePost(id: Int!): Post!
+  createComment(createCommentDto: CreateCommentDto!): Comment!
+  updateComment(updateCommentDto: UpdateCommentDto!): Comment!
+  removeComment(id: Int!): Comment!
+  createReaction(createReactionDto: CreateReactionDto!): Reaction!
+  updateReaction(updateReactionDto: UpdateReactionDto!): Reaction!
+  removeReaction(id: Int!): Reaction!
+  createNotification(createNotificationDto: CreateNotificationDto!): Notification!
+  updateNotification(updateNotificationDto: UpdateNotificationDto!): Notification!
+  removeNotification(id: Int!): Notification!
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
+  bio: String
+}
+
+input UpdatePreferencesInput {
+  darkMode: Boolean!
+  notifications: Boolean!
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+  bio: String
+  id: ID!
+}
+
+input CreatePostDto {
+  content: String!
+  authorId: String!
+}
+
+input UpdatePostDto {
+  content: String
+  authorId: String
+  id: Int!
+}
+
+input CreateCommentDto {
+  content: String!
+  authorId: String!
+  postId: String!
+}
+
+input UpdateCommentDto {
+  content: String
+  authorId: String
+  postId: String
+  id: Int!
+}
+
+input CreateReactionDto {
+  type: String!
+  userId: String!
+  postId: String!
+}
+
+input UpdateReactionDto {
+  type: String
+  userId: String
+  postId: String
+  id: Int!
+}
+
+input CreateNotificationDto {
+  userId: String!
+  category: String!
+  content: String!
+}
+
+input UpdateNotificationDto {
+  userId: String
+  category: String
+  content: String
+  id: Int!
+}
+
+type Subscription {
+  postAdded: Post!
+  notificationAdded(recipientId: String!): Notification!
+}
