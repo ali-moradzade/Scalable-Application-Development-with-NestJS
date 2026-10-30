@@ -1,6 +1,7 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {User} from '../../users/schemas/user.schema.js';
 import {Post} from '../../posts/schemas/post.schema.js';
+import {Document} from 'mongoose';
 
 @Schema({timestamps: true})
 export class Reaction extends Document {

@@ -9,12 +9,23 @@ import {PostsModule} from './posts/posts.module.js';
 import {ApolloDriver, ApolloDriverConfig} from '@nestjs/apollo';
 import {CommentsModule} from './comments/comments.module.js';
 import {ReactionsModule} from './reactions/reactions.module.js';
+import {NotificationsModule} from './notifications/notifications.module.js';
 
 @Module({
     imports: [
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
             autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+            subscriptions: {
+                'graphql-ws': {
+                    onConnect: (context) => {
+
+                    },
+                    onDisconnect: (context) => {
+
+                    },
+                }
+            }
         }),
         MongooseModule.forRoot(
             'mongodb://localhost/nectme',
@@ -23,6 +34,7 @@ import {ReactionsModule} from './reactions/reactions.module.js';
         PostsModule,
         CommentsModule,
         ReactionsModule,
+        NotificationsModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common';
 import {CommentsService} from './comments.service.js';
 import {CommentsResolver} from './comments.resolver.js';
 import {MongooseModule} from '@nestjs/mongoose';
-import {CommentSchema} from './schemas/comment.schema.js';
+import {CommentSchema, Comment} from './schemas/comment.schema.js';
 
 @Module({
     imports: [

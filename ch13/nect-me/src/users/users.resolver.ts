@@ -23,6 +23,19 @@ export class UsersResolver {
         return this.usersService.findAll();
     }
 
+    @Mutation(returns => User)
+    async updatePreferences(
+        @Args('userId') userId: string,
+        @Args('preferences') preferences: Map<string, boolean>
+    ): Promise<User> {
+        const user = await this.usersService.updatePreferences(userId, preferences);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        return user;
+    }
+
     @Query(() => User, {name: 'user'})
     findOne(@Args('id', {type: () => Int}) id: number) {
         return this.usersService.findOne(id);

@@ -21,6 +21,13 @@ export class UsersService {
         return this.userModel.find().exec();
     }
 
+    async updatePreferences(
+        userId: string,
+        preferences: Map<string, boolean>,
+    ) {
+        return this.userModel.findByIdAndUpdate(userId, {preferences}, {returnDocument: 'after'}).exec();
+    }
+
     findOne(id: number) {
         return `This action returns a #${id} user`;
     }

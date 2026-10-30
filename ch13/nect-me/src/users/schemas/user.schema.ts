@@ -24,9 +24,11 @@ export class User extends Document {
     bio: string;
 
     @Prop({
-        type: [String]
+        type: Map,
+        of: Boolean,
+        default: {}
     })
-    preferences: string[];
+    preferences: Map<string, boolean>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
